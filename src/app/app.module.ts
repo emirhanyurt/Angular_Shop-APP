@@ -8,8 +8,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { ProductComponent } from './components/product/product.component';
 import { BasketComponent } from './components/basket/basket.component';
 import { PaymentComponent } from './components/payment/payment.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ToastrModule } from 'ngx-toastr';
+import { ToastrModule, ToastNoAnimation, ToastNoAnimationModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -23,10 +22,10 @@ import { ToastrModule } from 'ngx-toastr';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule,
-    ToastrModule.forRoot({closeButton:true,progressBar:true})
-
-    
+    ToastNoAnimationModule.forRoot({
+      closeButton:true,
+      progressBar:true
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

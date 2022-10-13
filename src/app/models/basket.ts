@@ -1,6 +1,6 @@
 import { ProductModel } from "./product";
 
-export class BaskerModel{
+export class BasketModel{
     product:ProductModel
     quantity:number
 }

@@ -1,1 +1,36 @@
-<p>payment works!</p>
+<div class="modal fade" id="PayModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="PayModalLabel">Modal title</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Kart Sahini Ad Soyad</label>
+                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Ad Soyad Giriniz">
+              </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Kart Numarası</label>
+                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Kart Numarası Giriniz">
+              </div>
+              <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Son Kullanma Tarihi</label>
+                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Son Kullanma Tarihi Giriniz">
+              </div>
+              <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">CCV</label>
+                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="CCV Giriniz">
+              </div>
+              <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Toplam Ödenecek Tutar</label>
+                <h3 class="text-danger">{{ total | currency: 'TRY' : 'symbol-narrow' : '1.2-2' }}</h3>
+              </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="ModalClose" >Kapat</button>
+          <button type="button" class="btn btn-primary" (click)="payment()">Ödeme Yap</button>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-payment',
@@ -7,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PaymentComponent implements OnInit {
 
+  @Input() total:number
+  @Output() myEvent:EventEmitter<any> = new EventEmitter();
   constructor() { }
 
   ngOnInit(): void {
   }
-
+  payment(){
+    this.myEvent.emit({total: this.total})
+    document.getElementById("ModalClose").click();
+  }
 }
