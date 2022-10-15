@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { BasketModel } from "src/app/models/basket";
 
 @Component({
@@ -7,12 +7,9 @@ import { BasketModel } from "src/app/models/basket";
 
 })
 
-export class HomeComponent{
-   baskets:BasketModel[] = []
+export class HomeComponent implements OnInit{
+    constructor(){}
+    ngOnInit(): void{
 
-   getBaskets(event:any){
-    this.baskets = event.data
-
-
-   }
+    }
 }
