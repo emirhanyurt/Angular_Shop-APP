@@ -9,6 +9,7 @@ import { ProductComponent } from './components/product/product.component';
 import { BasketComponent } from './components/basket/basket.component';
 import { PaymentComponent } from './components/payment/payment.component';
 import { ToastrModule, ToastNoAnimation, ToastNoAnimationModule } from 'ngx-toastr';
+import { ProductAddComponent } from './components/product/product-add/product-add/product-add.component';
 
 @NgModule({
   declarations: [
@@ -17,14 +18,16 @@ import { ToastrModule, ToastNoAnimation, ToastNoAnimationModule } from 'ngx-toas
     NavbarComponent,
     ProductComponent,
     BasketComponent,
-    PaymentComponent
+    PaymentComponent,
+    ProductAddComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ToastNoAnimationModule.forRoot({
       closeButton:true,
-      progressBar:true
+      progressBar:true,
+      positionClass:"toast-bottom-right"
     })
   ],
   providers: [],

@@ -1,15 +1,12 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { BasketModel } from 'src/app/models/basket';
-import { ProductModel } from 'src/app/models/product';
+import { ProductModel } from '../models/product';
 
-@Component({
-  selector: 'app-product',
-  templateUrl: './product.component.html',
-  styleUrls: ['./product.component.scss']
+@Injectable({
+  providedIn: 'root'
 })
-export class ProductComponent implements OnInit {
- 
+export class ProductServiceService {
+  
   products:ProductModel[] = [
     {name:"Peynir",inventory:100, price:12.99 ,imageUrl:"https://www.peynircibaba.com/image/catalog/urunler/1008.jpg"},
     {name:"Zeytin",inventory:110, price:42.99 ,imageUrl:"https://www.organikgurmem.com/images/urunler/Mega-Siyah-Zeytin-1-KG-resim-930.jpg"},
@@ -20,20 +17,21 @@ export class ProductComponent implements OnInit {
     {name:"Priz",inventory:160,price:7.99,imageUrl:"https://cdn.cimri.io/image/1000x1000/gnsanfantasybeyaztopraklpriz_144399070.jpg"},
     {name:"Ekmek",inventory:170,price:5.00,imageUrl:"https://ankarahalkekmek.com.tr/wp-content/uploads/2020/11/normalekmek.jpg"}
   ]
- baskets:BasketModel[] = []
- @Output() myEvent:EventEmitter<any> = new  EventEmitter()
-  constructor(private toastr:ToastrService) { }
 
-  ngOnInit(): void {
+  constructor(private toastTr:ToastrService) { }
+
+  add(model:ProductModel):boolean
+  {
+    let length = this.products.filter(p=>p.name.toLocaleLowerCase() == model.name.toLocaleLowerCase()).length
+    if(length == 0){
+      this.products.push(model)
+      this.toastTr.success( model.name+" İsimli Ürün Başarılı Bir Şekilde Eklendi","Bilgi")
+    return true
+    }
+    else{
+      this.toastTr.error( model.name+" İsimli Ürün Kayıtlarda Mevcut","Bilgi")
+      return false
+    }
+   
   }
-   addBasket(product:ProductModel)
-   {
-    let basketModel = new BasketModel()
-    basketModel.product = product
-    basketModel.quantity = parseInt((<HTMLInputElement>document.getElementById("quantity-" + product.name)).value);
-    (<HTMLInputElement>document.getElementById("quantity-" + product.name)).value = "1"
-    this.baskets.push(basketModel)
-    this.myEvent.emit({data: this.baskets})
-    this.toastr.success(product.name+" Sepetinize Eklendi","Bilgi")
-   }
-  }
+}

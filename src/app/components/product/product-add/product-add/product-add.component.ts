@@ -1,15 +1,13 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { ToastrService } from 'ngx-toastr';
-import { BasketModel } from 'src/app/models/basket';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ProductModel } from 'src/app/models/product';
+import { ProductServiceService } from 'src/app/services/product.service.service';
 
 @Component({
-  selector: 'app-product',
-  templateUrl: './product.component.html',
-  styleUrls: ['./product.component.scss']
+  selector: 'app-product-add',
+  templateUrl: './product-add.component.html',
+  styleUrls: ['./product-add.component.scss']
 })
-export class ProductComponent implements OnInit {
- 
+export class ProductAddComponent implements OnInit {
   products:ProductModel[] = [
     {name:"Peynir",inventory:100, price:12.99 ,imageUrl:"https://www.peynircibaba.com/image/catalog/urunler/1008.jpg"},
     {name:"Zeytin",inventory:110, price:42.99 ,imageUrl:"https://www.organikgurmem.com/images/urunler/Mega-Siyah-Zeytin-1-KG-resim-930.jpg"},
@@ -20,20 +18,34 @@ export class ProductComponent implements OnInit {
     {name:"Priz",inventory:160,price:7.99,imageUrl:"https://cdn.cimri.io/image/1000x1000/gnsanfantasybeyaztopraklpriz_144399070.jpg"},
     {name:"Ekmek",inventory:170,price:5.00,imageUrl:"https://ankarahalkekmek.com.tr/wp-content/uploads/2020/11/normalekmek.jpg"}
   ]
- baskets:BasketModel[] = []
- @Output() myEvent:EventEmitter<any> = new  EventEmitter()
-  constructor(private toastr:ToastrService) { }
+   @ViewChild("name") name:ElementRef
+   @ViewChild("inventory") inventory:ElementRef
+   @ViewChild("price") price:ElementRef
+   @ViewChild("image") image:ElementRef
+  constructor(private productService:ProductServiceService) { }
 
   ngOnInit(): void {
   }
-   addBasket(product:ProductModel)
+
+   add(name:any,inventory:any,price:any,image:any)
    {
-    let basketModel = new BasketModel()
-    basketModel.product = product
-    basketModel.quantity = parseInt((<HTMLInputElement>document.getElementById("quantity-" + product.name)).value);
-    (<HTMLInputElement>document.getElementById("quantity-" + product.name)).value = "1"
-    this.baskets.push(basketModel)
-    this.myEvent.emit({data: this.baskets})
-    this.toastr.success(product.name+" Sepetinize Eklendi","Bilgi")
+       let model = new ProductModel()
+       model.name = name.value
+       model.price = price.value
+       model.inventory = inventory.value
+       model.imageUrl = image.value
+       let status:Boolean = this.productService.add(model)
+       if(status){
+        this.clear()
+       }
+       
+       
    }
-  }
+   clear()
+   {
+    this.name.nativeElement.value=""
+    this.inventory.nativeElement.value=""
+    this.price.nativeElement.value=""
+    this.image.nativeElement.value=""
+   }
+}
