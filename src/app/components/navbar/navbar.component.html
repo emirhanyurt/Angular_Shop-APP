@@ -17,8 +17,14 @@
               Sepet
             </a>
             <ul class="dropdown-menu">
-              <li *ngFor="let item of baskets">Miktar:{{item.quantity}} İsim:{{item.product.name}}</li>
+              <a routerLink="/">
+                <li>Toplam Ödeme: {{ total | currency: 'TRY' : 'symbol-narrow' : '1.2-2'}} </li>
+              </a>
+              
             </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/order">Siparişler</a>
           </li>
         </ul>
         <form class="d-flex" role="search">

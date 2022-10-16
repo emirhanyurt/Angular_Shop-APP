@@ -11,9 +11,19 @@ export class BasketService {
   constructor(private toast:ToastrService) { }
 
   addBasket(model:any){
-    this.baskets.push(model)
+    let BasketModel:BasketModel[] = this.baskets.filter(p=>p.product == model.product)
+    if(BasketModel.length > 0)
+    {
+      model.quantity = BasketModel[0].quantity + model.quantity
+      this.changeData(BasketModel[0],model.quantity)
+    }
+    else{
+      this.baskets.push(model)
     this.toast.info(model.name+" İsiml Ürün Sepete Eklendi")
     this.call()
+
+    }
+    
   }
   deleteBasket(basket:BasketModel)
   {
