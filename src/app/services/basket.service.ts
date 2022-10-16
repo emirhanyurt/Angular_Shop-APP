@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { BasketModel } from '../models/basket';
+import { OrderService } from './order.service';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +9,7 @@ import { BasketModel } from '../models/basket';
 export class BasketService {
   baskets:BasketModel[] = []
   total:number = 0
-  constructor(private toast:ToastrService) { }
+  constructor(private toast:ToastrService,private orderService:OrderService) { }
 
   addBasket(model:any){
     let BasketModel:BasketModel[] = this.baskets.filter(p=>p.product == model.product)
@@ -50,9 +51,11 @@ export class BasketService {
     if(this.total == total)
     {
       let count = this.baskets.length
-      this.baskets.splice(0,count)
+      this.orderService.addOrder(this.baskets)
+      //this.baskets.splice(0,count)
       this.toast.success("Ödeme Başarılı Bir Şekilde Gerçekleşti","Bilgi")
-      this.call()
+      
     }
+    this.call()
   }
 }
