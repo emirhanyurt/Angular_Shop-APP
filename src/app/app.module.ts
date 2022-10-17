@@ -4,13 +4,16 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
-import { NavbarComponent } from './components/navbar/navbar.component';
+import { NavbarComponent } from './components/layout//navbar/navbar.component';
 import { ProductComponent } from './components/product/product.component';
 import { BasketComponent } from './components/basket/basket.component';
 import { PaymentComponent } from './components/payment/payment.component';
 import { ToastrModule, ToastNoAnimation, ToastNoAnimationModule } from 'ngx-toastr';
 import { ProductAddComponent } from './components/product/product-add/product-add/product-add.component';
 import { OrderComponent } from './components/order/order.component';
+import { LayoutComponent } from './components/layout/layout.component';
+import { FooterComponent } from './components/layout/footer/footer.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +24,10 @@ import { OrderComponent } from './components/order/order.component';
     BasketComponent,
     PaymentComponent,
     ProductAddComponent,
-    OrderComponent
+    OrderComponent,
+    LayoutComponent,
+    FooterComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
