@@ -5,11 +5,12 @@ import { LayoutComponent } from './components/layout/layout.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { OrderComponent } from './components/order/order.component';
 import { ProductAddComponent } from './components/product/product-add/product-add/product-add.component';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   {path:'',component:LayoutComponent, children:[
   {path:'', component:HomeComponent},
-  {path:'product-add', component:ProductAddComponent},
+  {path:'product-add',canActivate:[AuthGuard], component:ProductAddComponent},
   {path:'orders',component:OrderComponent},
    ] },{path:'**',component:NotFoundComponent}
 ];

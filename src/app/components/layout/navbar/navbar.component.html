@@ -7,7 +7,8 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" routerLink="/">Ana Sayfa</a>
+            <a class="nav-link active" href="#"><i class="fa-sharp fa-solid fa-house" routerLink="/"></i>  Ana Sayfa</a>
+            
           </li>
           <li class="nav-item">
             <a class="nav-link" routerLink="product-add">Ürünler</a>
@@ -25,6 +26,12 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" routerLink="/orders">Siparişler</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" (click)="login()">Giriş Yap</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" (click)="logOut()">Çıkış Yap</a>
           </li>
         </ul>
         <form class="d-flex" role="search">
