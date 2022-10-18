@@ -14,6 +14,7 @@ import { OrderComponent } from './components/order/order.component';
 import { LayoutComponent } from './components/layout/layout.component';
 import { FooterComponent } from './components/layout/footer/footer.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -27,11 +28,14 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
     OrderComponent,
     LayoutComponent,
     FooterComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
     ToastNoAnimationModule.forRoot({
       closeButton:true,
       progressBar:true,

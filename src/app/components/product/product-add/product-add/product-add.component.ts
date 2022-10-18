@@ -1,4 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ProductModel } from 'src/app/models/product';
 import { ProductServiceService } from 'src/app/services/product.service.service';
 
@@ -18,34 +19,36 @@ export class ProductAddComponent implements OnInit {
     {name:"Priz",inventory:160,price:7.99,imageUrl:"https://cdn.cimri.io/image/1000x1000/gnsanfantasybeyaztopraklpriz_144399070.jpg"},
     {name:"Ekmek",inventory:170,price:5.00,imageUrl:"https://ankarahalkekmek.com.tr/wp-content/uploads/2020/11/normalekmek.jpg"}
   ]
-   @ViewChild("name") name:ElementRef
-   @ViewChild("inventory") inventory:ElementRef
-   @ViewChild("price") price:ElementRef
-   @ViewChild("image") image:ElementRef
-  constructor(private productService:ProductServiceService) { }
+  //  @ViewChild("name") name:ElementRef
+  //  @ViewChild("inventory") inventory:ElementRef
+  //  @ViewChild("price") price:ElementRef
+  //  @ViewChild("image") image:ElementRef
+  addForm:FormGroup
+  constructor(private productService:ProductServiceService,private formBuilder:FormBuilder) { }
 
   ngOnInit(): void {
+    this.creatAddForm()
+  }
+  creatAddForm(){
+    this.addForm = this.formBuilder.group({
+      'name':['',[Validators.required, Validators.minLength(3)]],
+      'inventory':[0,[Validators.required, Validators.minLength(1)]],
+      'price':[,[Validators.required, Validators.min(1)]],
+      'imageUrl':[,[Validators.required, Validators.minLength(5)]],
+    })
+
   }
 
-   add(name:any,inventory:any,price:any,image:any)
+   add()
    {
-       let model = new ProductModel()
-       model.name = name.value
-       model.price = price.value
-       model.inventory = inventory.value
-       model.imageUrl = image.value
-       let status:Boolean = this.productService.add(model)
-       if(status){
-        this.clear()
-       }
-       
+   if(this.addForm.valid)
+   {
+        let status:Boolean = this.productService.add(this.addForm.value)
+        if(status){
+         this.addForm.reset()
+        }
+   }   
        
    }
-   clear()
-   {
-    this.name.nativeElement.value=""
-    this.inventory.nativeElement.value=""
-    this.price.nativeElement.value=""
-    this.image.nativeElement.value=""
-   }
+  
 }
