@@ -2,7 +2,7 @@
 <div class="mt-4 mx-2">
     <div class="row">
         <div class="col-lg-8"><app-product ></app-product></div>
-        <div class="col-lg-4 "><app-basket></app-basket></div>
+        <div class="col-lg-4 "><app-basket *ngIf="!isAut"></app-basket></div>
     </div>
 </div>
 

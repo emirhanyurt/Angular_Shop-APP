@@ -14,7 +14,10 @@
                     </div>
                     <div class="col-lg-4"></div>
                     <div>
-                        <button (click)="addBasket(product)" class="btn btn-primary  mt-2">Sepet Ekle</button>
+                        <button *ngIf="!isAuth" (click)="addBasket(product)" class="btn btn-primary  mt-2">Sepet Ekle</button>
+                    </div>
+                    <div>
+                        <button *ngIf="isAuth" routerLink="/update-add/{{product.id}}" class="btn btn-warning  mt-2">Güncelle</button>
                     </div>
                 </div>
             </div>
