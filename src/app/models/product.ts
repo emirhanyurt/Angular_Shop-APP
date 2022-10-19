@@ -2,6 +2,7 @@ export class ProductModel{
     id:number
     name:string
     price:number
-    inventory:number
+    inventoryQuantity:number
     imageUrl:string
+    codeGuid:string
 }

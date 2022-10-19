@@ -11,27 +11,25 @@
             
           </li>
           <li class="nav-item">
-            <a class="nav-link" routerLink="product-add">Ürünler</a>
+            <a class="nav-link" *ngIf="isAut" routerLink="product-add">Ürünler</a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" routerLink="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Sepet
             </a>
-            <ul class="dropdown-menu">
-              <a routerLink="/">
-                <li>Toplam Ödeme: {{ total | currency: 'TRY' : 'symbol-narrow' : '1.2-2'}} </li>
-              </a>
-              
-            </ul>
           </li>
+            <li class="nav-item">
+              <a class="nav-link text-danger" *ngIf="!isAut" routerLink="product-add">Toplam Ödeme: {{ total | currency: 'TRY' : 'symbol-narrow' : '1.2-2'}}</a>
+            </li>
+  
           <li class="nav-item">
             <a class="nav-link" routerLink="/orders">Siparişler</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#" (click)="login()">Giriş Yap</a>
+            <a class="nav-link btn btn-outline-success" *ngIf="!isAut" href="#"  (click)="login()">Giriş Yap</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#" (click)="logOut()">Çıkış Yap</a>
+            <a class="nav-link btn btn-outline-danger" *ngIf="isAut" href="#" (click)="logOut()">Çıkış Yap</a>
           </li>
         </ul>
         <form class="d-flex" role="search">

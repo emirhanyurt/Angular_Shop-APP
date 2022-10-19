@@ -27,7 +27,7 @@ export class ProductUpdateComponent implements OnInit {
     this.updateForm = this.formBuilder.group({
       'id':[0,[Validators.required]],
       'name':['',[Validators.required, Validators.minLength(3)]],
-      'inventory':[0,[Validators.required, Validators.minLength(1)]],
+      'inventoryQuantity':[0,[Validators.required, Validators.minLength(1)]],
       'price':[,[Validators.required, Validators.min(1)]],
       'imageUrl':[,[Validators.required, Validators.minLength(5)]],
     })
@@ -36,23 +36,23 @@ export class ProductUpdateComponent implements OnInit {
   getById(){
     let id:number = 0
         
-    this.activatiRoute.params.subscribe((p)=>{
-        id = p['id']
-        console.log(id)
-    })
-    this.productService.getById(id).subscribe((res)=>
-    {
-      this.productModel = res
-      this.updateForm.controls['id'].setValue(res.id)
-      this.updateForm.controls['name'].setValue(res.name)
-      this.updateForm.controls['inventory'].setValue(res.inventory)
-      this.updateForm.controls['price'].setValue(res.price)
-      this.updateForm.controls['imageUrl'].setValue(res.imageUrl)
+    // this.activatiRoute.params.subscribe((p)=>{
+    //     id = p['id']
+    //     console.log(id)
+    // })
+    // this.productService.getById(id).subscribe((res)=>
+    // {
+    //   this.productModel = res
+    //   this.updateForm.controls['id'].setValue(res.id)
+    //   this.updateForm.controls['name'].setValue(res.name)
+    //   this.updateForm.controls['inventoryQuantity'].setValue(res.inventory)
+    //   this.updateForm.controls['price'].setValue(res.price)
+    //   this.updateForm.controls['imageUrl'].setValue(res.imageUrl)
     
     
-    },(err)=>{
+    // },(err)=>{
       
-    })
+    // })
   }
   update(){
     if(this.updateForm.valid){

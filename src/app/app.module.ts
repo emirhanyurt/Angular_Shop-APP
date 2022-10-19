@@ -17,6 +17,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProductUpdateComponent } from './components/product/product-update/product-update.component';
 import { FilterProductPipe } from './pipe/filter-product.pipe';
+import { HttpClientModule} from '@angular/common/http'
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { FilterProductPipe } from './pipe/filter-product.pipe';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule,
     ToastNoAnimationModule.forRoot({
       closeButton:true,
       progressBar:true,

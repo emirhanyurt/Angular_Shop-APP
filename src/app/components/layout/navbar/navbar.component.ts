@@ -12,6 +12,7 @@ import { BasketService } from 'src/app/services/basket.service';
 export class NavbarComponent implements OnInit, AfterContentChecked {
    baskets:BasketModel[] = []
    total:number = 0
+   isAut:boolean=false
   constructor(private toastr:ToastrService,private basketService:BasketService,private authService:AuthService) { }
   
 
@@ -24,11 +25,13 @@ export class NavbarComponent implements OnInit, AfterContentChecked {
   login(){
     this.authService.login()
     this.toastr.info("Giriş Yapıldı")
+    this.isAut = this.authService.isAut
     
    }
    logOut(){
      this.authService.logaut()
      this.toastr.warning("Çıkış Yapıldı")
+     this.isAut = false
      
    }
 }
