@@ -15,6 +15,7 @@ export class ProductComponent implements OnInit ,AfterContentChecked{
  
   products:ProductModel[]
   isAuth:boolean
+  filterText:string = ""
   constructor(private toastr:ToastrService,private productService:ProductServiceService,private basketService:BasketService,private auht:AuthService) { }
   ngAfterContentChecked(): void {
     this.isAuth = this.auht.isAut
