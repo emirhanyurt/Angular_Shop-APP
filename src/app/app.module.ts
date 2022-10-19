@@ -18,6 +18,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProductUpdateComponent } from './components/product/product-update/product-update.component';
 import { FilterProductPipe } from './pipe/filter-product.pipe';
 import { HttpClientModule} from '@angular/common/http'
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   declarations: [
@@ -35,11 +36,13 @@ import { HttpClientModule} from '@angular/common/http'
     ProductUpdateComponent,
     FilterProductPipe,
     
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    NgxSpinnerModule,
     ReactiveFormsModule,
     HttpClientModule,
     ToastNoAnimationModule.forRoot({
