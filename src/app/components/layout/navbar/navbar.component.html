@@ -14,7 +14,7 @@
             <a class="nav-link" *ngIf="isAut" routerLink="product-add">Ürünler</a>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" routerLink="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="nav-link dropdown-toggle" *ngIf="!isAut" routerLink="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Sepet
             </a>
           </li>
@@ -23,10 +23,10 @@
             </li>
   
           <li class="nav-item">
-            <a class="nav-link" routerLink="/orders">Siparişler</a>
+            <a class="nav-link" *ngIf="!isAut" routerLink="/orders">Siparişler</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link btn btn-outline-success" *ngIf="!isAut" href="#"  (click)="login()">Giriş Yap</a>
+            <a class="nav-link btn btn-outline-success" *ngIf="!isAut" href="#"  routerLink="/login">Giriş Yap</a>
           </li>
           <li class="nav-item">
             <a class="nav-link btn btn-outline-danger" *ngIf="isAut" href="#" (click)="logOut()">Çıkış Yap</a>

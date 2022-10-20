@@ -19,6 +19,7 @@ import { ProductUpdateComponent } from './components/product/product-update/prod
 import { FilterProductPipe } from './pipe/filter-product.pipe';
 import { HttpClientModule} from '@angular/common/http'
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     NotFoundComponent,
     ProductUpdateComponent,
     FilterProductPipe,
+    LoginComponent,
     
     
   ],
