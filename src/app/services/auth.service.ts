@@ -6,6 +6,8 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { Login } from '../models/login';
+import { ProductModel } from '../models/product';
+import { ResponseModel } from '../models/responseModel';
 import { singleResponseModule } from '../models/singleResponseModule';
 import { TokenModel } from '../models/token';
 
@@ -47,4 +49,5 @@ export class AuthService {
     this.router.navigate(['/'])
     this.toastr.warning("Çıkış Yapıldı")
   }
+  
 }

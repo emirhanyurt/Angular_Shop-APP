@@ -12,11 +12,11 @@ export class HomeComponent implements OnInit,AfterContentChecked{
     isAut:boolean = false
     constructor(private authService:AuthService){}
     ngAfterContentChecked(): void {
-        this.isAut = this.authService.isAut
+        this.isAut = this.authService.ifAuthenticated()
         
     }
    
     ngOnInit(): void{
-        this.isAut = this.authService.isAut
+        this.isAut = this.authService.ifAuthenticated()
     }
 }

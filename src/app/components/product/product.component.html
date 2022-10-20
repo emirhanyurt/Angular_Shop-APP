@@ -8,6 +8,7 @@
             <img style="width: 200px; height: 200px;"  src="{{product.imageUrl}}">
             <h3>{{product.name}}</h3>
             <h4 class="text-danger">{{product.price | currency: 'TRY' : 'symbol-narrow' : '1.2-2'}} </h4>
+            <strong>Kalan Adet: {{ product.inventoryQuantity}}</strong>
             <div class="form-group ">
                 <div class="row">
                     <div class="col-lg-4"></div>
@@ -19,7 +20,7 @@
                         <button *ngIf="!isAuth" (click)="addBasket(product)" class="btn btn-primary  mt-2">Sepet Ekle</button>
                     </div>
                     <div>
-                        <button *ngIf="isAuth" routerLink="/update-add/{{product.id}}" class="btn btn-warning  mt-2">Güncelle</button>
+                        <button *ngIf="isAuth" routerLink="/update-add/{{product.codeGuid}}" class="btn btn-warning  mt-2">Güncelle</button>
                     </div>
                 </div>
             </div>

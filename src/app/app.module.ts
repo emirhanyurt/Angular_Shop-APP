@@ -20,6 +20,7 @@ import { FilterProductPipe } from './pipe/filter-product.pipe';
 import { HttpClientModule} from '@angular/common/http'
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { LoginComponent } from './components/login/login.component';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { LoginComponent } from './components/login/login.component';
     NgxSpinnerModule,
     ReactiveFormsModule,
     HttpClientModule,
+    SweetAlert2Module.forRoot(),
     ToastNoAnimationModule.forRoot({
       closeButton:true,
       progressBar:true,

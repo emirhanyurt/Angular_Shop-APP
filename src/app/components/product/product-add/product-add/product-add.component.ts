@@ -1,5 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { ProductModel } from 'src/app/models/product';
 import { ProductServiceService } from 'src/app/services/product.service.service';
 
@@ -24,8 +26,9 @@ export class ProductAddComponent implements OnInit {
   //  @ViewChild("price") price:ElementRef
   //  @ViewChild("image") image:ElementRef
   addForm:FormGroup
-  constructor(private productService:ProductServiceService,private formBuilder:FormBuilder) { }
-
+  image:string
+  constructor(private toastr:ToastrService,private productService:ProductServiceService,private formBuilder:FormBuilder,private router:Router) { }
+ 
   ngOnInit(): void {
     this.creatAddForm()
   }
@@ -35,19 +38,27 @@ export class ProductAddComponent implements OnInit {
       'inventoryQuantity':[0,[Validators.required, Validators.minLength(1)]],
       'price':[,[Validators.required, Validators.min(1)]],
       'imageUrl':[,[Validators.required, Validators.minLength(5)]],
+      'codeGuid':['']
     })
 
   }
 
    add()
    {
-   if(this.addForm.valid)
-   {
-        // let status:Boolean = this.productService.add(this.addForm.value)
-        // if(status){
-        //  this.addForm.reset()
-        // }
-   }   
+    if(this.addForm.valid)
+       {
+        let model:ProductModel = this.addForm.value
+        console.log(model)
+        this.productService.add(model).subscribe((res)=>{
+        this.router.navigate(["/"])
+        this.toastr.success("Ürün Eklendi")
+        },(err)=>{
+          console.log(err)
+        })
+        } 
+  else{
+    this.toastr.warning("Lütfen Gerekli Alanları Doldurunuz")
+      }  
        
    }
   

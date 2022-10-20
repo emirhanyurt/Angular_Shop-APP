@@ -17,14 +17,17 @@
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">ÜRün Resmi</label>
-                        <input type="text" formControlName="imageUrl" class="form-control" >
+                        <input type="text" [(ngModel)]="image" formControlName="imageUrl" class="form-control" >
                     </div>
                 </div>
                 <div class="form-group text-center">
-                    <button class="btn btn-success" type="submit">Ürünü Kaydet</button>
+                    <button class="btn btn-success"  type="submit">Ürünü Kaydet</button>
                 </div>
             </div>
         </div>
     </form>
-    
+    <hr>
+    <div *ngIf="image" class="form-group text-center">
+        <img [src]="image" style="height: 400px; width: 400px;">
+     </div>
 </div>

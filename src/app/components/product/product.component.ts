@@ -29,6 +29,7 @@ export class ProductComponent implements OnInit ,AfterContentChecked{
     
     
     this.getList()
+    
     //  this.products = this.productService.products
   }
   getList()

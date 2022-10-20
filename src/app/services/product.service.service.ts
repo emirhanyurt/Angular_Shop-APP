@@ -1,10 +1,11 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { Observable, of } from 'rxjs';
 import { ListResponseModel } from '../models/listResponseModel';
 import { ProductModel } from '../models/product';
 import { ResponseModel } from '../models/responseModel';
+import { singleResponseModule } from '../models/singleResponseModule';
 
 @Injectable({
   providedIn: 'root'
@@ -28,22 +29,44 @@ export class ProductServiceService {
   //   }
    
   // }
-  // getById(id:number):Observable<any>{
-  //   console.log(id)
-  //   let model: ProductModel = this.products.find(i => i.id == id)
-  //   console.log(model)
-  //   return of(model)
-  // }
-   update(model : ProductModel)
+   getById(guid:string):Observable<singleResponseModule<ProductModel>>{
+    let api = "https://webapi.angulareducation.com/api/products/getById?guid=" + guid;
+    let Token = localStorage.getItem("Token")
+    return this.httpClient.get<singleResponseModule<ProductModel>>(api,{
+      headers: new HttpHeaders({"Authorization":"Bearer " + Token})
+    })
+   }
+   update(model : ProductModel):Observable<ResponseModel>
    {
-     let productModel:ProductModel = this.products.find(i => i.id == model.id)
-     let index = this.products.indexOf(productModel)
-     this.products[index] = model
+     let api = "https://webapi.angulareducation.com/api/products/update"
+     let Token = localStorage.getItem("Token")
+    return this.httpClient.post<ResponseModel>(api,model,{
+      headers: new HttpHeaders({"Authorization":"Bearer " + Token})
+    })
   }
+  delete(model : ProductModel):Observable<ResponseModel>
+   {
+     let api = "https://webapi.angulareducation.com/api/products/delete"
+     let Token = localStorage.getItem("Token")
+    return this.httpClient.post<ResponseModel>(api,model,{
+      headers: new HttpHeaders({"Authorization":"Bearer " + Token})
+    })
+  }
+
 
   getList():Observable<ListResponseModel<ProductModel>>
   {
     let api = "https://webapi.angulareducation.com/api/products/getlist"
+    
     return this.httpClient.get<ListResponseModel<ProductModel>>(api)
+    
+  }
+  add(productsModel:ProductModel):Observable<ResponseModel>
+  {
+    let api = "https://webapi.angulareducation.com/api/products/add";
+    let Token = localStorage.getItem("Token")
+    return this.httpClient.post<ResponseModel>(api,productsModel,{
+      headers: new HttpHeaders({"Authorization":"Bearer " + Token})
+    })
   }
 }
