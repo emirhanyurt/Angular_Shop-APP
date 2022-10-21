@@ -1,8 +1,8 @@
 export class ProductModel{
     id:number
     name:string
-    price:number
     inventoryQuantity:number
+    price:number
     imageUrl:string
     codeGuid:string
 }

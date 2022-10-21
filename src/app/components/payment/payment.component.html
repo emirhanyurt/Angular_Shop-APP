@@ -5,22 +5,24 @@
           <h1 class="modal-title fs-5" id="PayModalLabel">Modal title</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
+        <form [formGroup]="paymetForm" (ngSubmit)="payment()">
+
         <div class="modal-body">
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">Kart Sahini Ad Soyad</label>
-                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Ad Soyad Giriniz">
+                <input type="text" class="form-control" formControlName="cartOwner"  placeholder="Ad Soyad Giriniz">
               </div>
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">Kart Numarası</label>
-                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Kart Numarası Giriniz">
+                <input type="text" class="form-control" formControlName="cartNumber" id="exampleFormControlInput1" placeholder="Kart Numarası Giriniz">
               </div>
               <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">Son Kullanma Tarihi</label>
-                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Son Kullanma Tarihi Giriniz">
+                <input type="text" class="form-control" formControlName="expirationDate" id="exampleFormControlInput1" placeholder="Son Kullanma Tarihi Giriniz">
               </div>
               <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">CCV</label>
-                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="CCV Giriniz">
+                <label for="exampleFormControlInput1" class="form-label">CVV</label>
+                <input type="text" class="form-control" formControlName="cvv" id="exampleFormControlInput1" placeholder="CCV Giriniz">
               </div>
               <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">Toplam Ödenecek Tutar</label>
@@ -29,8 +31,10 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="ModalClose" >Kapat</button>
-          <button type="button" class="btn btn-primary" (click)="payment()">Ödeme Yap</button>
+          <button type="submit" class="btn btn-primary" >Ödeme Yap</button>
         </div>
+      </form>
+
       </div>
     </div>
   </div>

@@ -4,6 +4,8 @@ import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { BasketModel } from '../models/basket';
 import { ListResponseModel } from '../models/listResponseModel';
+import { OrderAddDto } from '../models/orderAddDto';
+import { PaymentModel } from '../models/payment';
 import { ResponseModel } from '../models/responseModel';
 import { OrderService } from './order.service';
 
@@ -54,16 +56,20 @@ export class BasketService {
       //  this.baskets[index].quantity = quantity;
       //  this.call()
   }
-  payment(total:number)
+  payment(payment:PaymentModel)
   {  
-    // if(this.total == total)
-    // {
-    //   let count = this.baskets.length
-    //   this.orderService.addOrder(this.baskets)
-    //   //this.baskets.splice(0,count)
-    //   this.toast.success("Ödeme Başarılı Bir Şekilde Gerçekleşti","Bilgi")
+    let api ="https://webapi.angulareducation.com/api/Orders/addPayment"
+    let model = new OrderAddDto()
+    console.log(payment)
+    model.payment = payment
+    model.baskets = this.baskets
+     
+    this.httpClient.post(api,model).subscribe((res)=>{
+      this.getList()
+      this.toast.success("Ödeme İşlemi Tamamlandı. Siparişiniz Alındı ")
+    },(err)=>{
       
-    // }
-    // this.call()
+      console.log(err)
+    })
   }
 }

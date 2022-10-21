@@ -1,6 +1,11 @@
-import { BasketModel } from "./basket";
+
 
 export class OrderModel{
-    baskets:BasketModel[]
-    date:string
+    id: number
+    paymentId: number 
+    price: number
+    productId:number
+    productName:string
+    quantity: number
+
 }
