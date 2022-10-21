@@ -17,12 +17,14 @@ import { ProductServiceService } from 'src/app/services/product.service.service'
 export class ProductComponent implements OnInit ,AfterContentChecked{
  
   products:ProductModel[]
+  newQ:number = 0
   isAuth:boolean
   filterText:string = ""
   isLoad:boolean = true
   constructor(private spinner:NgxSpinnerService,private toastr:ToastrService,private httpClient:HttpClient,private productService:ProductServiceService,private basketService:BasketService,private auht:AuthService) { }
   ngAfterContentChecked(): void {
     this.isAuth = this.auht.isAut
+    this.products = this.productService.products
   }
 
   ngOnInit(): void {
@@ -34,27 +36,33 @@ export class ProductComponent implements OnInit ,AfterContentChecked{
   }
   getList()
   {
-    this.spinner.show();
-    this.productService.getList().subscribe((res)=>{
-      this.spinner.hide
-      this.products = res.data
-      
-    },(err)=>{
-      this.spinner.hide
-      if(err.status == "404"){
-        this.toastr.error(err.statusText)
-      }else{
-        console.log(err)
-      }
-    })
+
+    this.productService.getList()
   }
    addBasket(product:ProductModel)
    {
     let basketModel = new BasketModel()
-    basketModel.product = product
-    basketModel.quantity = parseInt((<HTMLInputElement>document.getElementById("quantity-" + product.name)).value);
+    let quantity:number = parseInt((<HTMLInputElement>document.getElementById("quantity-" + product.name)).value);
+   
+   
+    if(product.inventoryQuantity < quantity ){
+       this.newQ =quantity - 1
+         this.toastr.error("En falza"+this.newQ+"ürün satın alabilirsiniz")
+         return
+    }
     (<HTMLInputElement>document.getElementById("quantity-" + product.name)).value = "1"
-    this.basketService.addBasket(basketModel)
+    basketModel.product = product
+    basketModel.productId = product.id
+    basketModel.quantity=quantity
+    this.basketService.addBasket(basketModel).subscribe((res)=>{
+       this.toastr.success(res.message)
+       this.getList()  
+       this.basketService.getList()
+    
+    },(err)=>{
+      console.log(err)
+    })
+    
     
    }
   }

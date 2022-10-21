@@ -21,10 +21,10 @@ export class AuthService {
   ifAuthenticated(){
     if(localStorage.getItem("token"))
     {
-      return  true
+      return  false
     }
     else{
-      return  false
+      return  true
     }
   }
   login(loginModel:Login):boolean{
@@ -48,6 +48,7 @@ export class AuthService {
     this.isAut = false
     this.router.navigate(['/'])
     this.toastr.warning("Çıkış Yapıldı")
+    return false
   }
   
 }

@@ -13,11 +13,7 @@
           <li class="nav-item">
             <a class="nav-link" *ngIf="isAut" routerLink="product-add">Ürünler</a>
           </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" *ngIf="!isAut" routerLink="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Sepet
-            </a>
-          </li>
+          
             <li class="nav-item">
               <a class="nav-link text-danger" *ngIf="!isAut" routerLink="product-add">Toplam Ödeme: {{ total | currency: 'TRY' : 'symbol-narrow' : '1.2-2'}}</a>
             </li>

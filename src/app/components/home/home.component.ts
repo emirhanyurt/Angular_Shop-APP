@@ -9,14 +9,15 @@ import { AuthService } from "src/app/services/auth.service";
 })
 
 export class HomeComponent implements OnInit,AfterContentChecked{
-    isAut:boolean = false
+    isAut:boolean  = true
     constructor(private authService:AuthService){}
     ngAfterContentChecked(): void {
-        this.isAut = this.authService.ifAuthenticated()
+        this.isAut = this.authService.isAut
         
     }
    
     ngOnInit(): void{
-        this.isAut = this.authService.ifAuthenticated()
+        this.isAut = this.authService.isAut
+       
     }
 }

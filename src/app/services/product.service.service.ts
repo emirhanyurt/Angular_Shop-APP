@@ -54,12 +54,22 @@ export class ProductServiceService {
   }
 
 
-  getList():Observable<ListResponseModel<ProductModel>>
+  getList()
   {
     let api = "https://webapi.angulareducation.com/api/products/getlist"
-    
-    return this.httpClient.get<ListResponseModel<ProductModel>>(api)
-    
+    this.httpClient.get<ListResponseModel<ProductModel>>(api).subscribe((res)=>{
+
+      this.products = res.data
+      
+      
+    },(err)=>{
+ 
+      if(err.status == "404"){
+        this.toastTr.error(err.statusText)
+      }else{
+        console.log(err)
+      }
+    })
   }
   add(productsModel:ProductModel):Observable<ResponseModel>
   {
